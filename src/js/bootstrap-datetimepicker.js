@@ -40,6 +40,12 @@
     return dt;
   };
 
+  if (Date.prototype.getUTCYear === undefined) {
+    Date.prototype.getUTCYear = function() {
+      return this.getUTCFullYear() - 1900;
+    };
+  }
+
   DateTimePicker.prototype = {
     constructor: DateTimePicker,
 
@@ -1093,7 +1099,9 @@
   };
 
   var dateFormatComponents = {
+    d: {property: 'UTCDate', getPattern: function() { return '([1-9]|[1-2][0-9]|3[0-1])\\b';}},
     dd: {property: 'UTCDate', getPattern: function() { return '(0?[1-9]|[1-2][0-9]|3[0-1])\\b';}},
+    M: {property: 'UTCMonth', getPattern: function() {return '([1-9]|1[0-2])\\b';}},
     MM: {property: 'UTCMonth', getPattern: function() {return '(0?[1-9]|1[0-2])\\b';}},
     yy: {property: 'UTCYear', getPattern: function() {return '(\\d{2})\\b'}},
     yyyy: {property: 'UTCFullYear', getPattern: function() {return '(\\d{4})\\b';}},
@@ -1101,6 +1109,7 @@
     mm: {property: 'UTCMinutes', getPattern: function() {return '(0?[0-9]|[1-5][0-9])\\b';}},
     ss: {property: 'UTCSeconds', getPattern: function() {return '(0?[0-9]|[1-5][0-9])\\b';}},
     SSS: {property: 'UTCMilliseconds', getPattern: function() {return '([0-9]{1,3})\\b';}},
+    h: {property: 'Hours12', getPattern: function() {return '([1-9]|1[0-2])\\b';}},
     hh: {property: 'Hours12', getPattern: function() {return '(0?[1-9]|1[0-2])\\b';}},
     a: {property: 'Period12', getPattern: function() {return '(AM|PM|am|pm|Am|aM|Pm|pM)\\b';}}
   };
