@@ -201,7 +201,7 @@ describe 'datetimepicker', ->
 describe 'datetimepicker with 12-hour clock format', ->
 
   beforeEach setupDateTimePicker({
-    format: 'MM/dd/yyyy HH:mm PP'
+    format: 'MM/dd/yyyy hh:mm a'
     value: '05/01/1905 09:52 PM'
     pick12HourFormat: true
   })
@@ -269,6 +269,43 @@ describe 'datetimepicker with 12-hour clock format', ->
     @timeWidget.find('.timepicker-hours .hour:contains(12)').click()
     @dateShouldEqual 1905, 4, 1, 0, 52
 
+describe 'datetimepicker with italian format', ->
+
+  beforeEach setupDateTimePicker({
+    format: 'dd/MM/yyyy HH:mm'
+    value: '01/05/1905 09:52'
+    pick12HourFormat: false
+  })
+
+  afterEach teardownDateTimePicker()
+
+  it 'parses correctly', ->
+    @dateShouldEqual 1905, 4, 1, 9, 52
+    expect(@timeWidget.find('.timepicker-hour').text()).to.equal '09'
+    expect(@timeWidget.find('.timepicker-minute').text()).to.equal '52'
+    expect(@timeWidget.find('.timepicker-second').text()).to.equal '00'
+    @input.val '01/05/1905 12:52'
+    @input.change()
+    @dateShouldEqual 1905, 4, 1, 12, 52
+    expect(@timeWidget.find('.timepicker-hour').text()).to.equal '12'
+    expect(@timeWidget.find('.timepicker-minute').text()).to.equal '52'
+    expect(@timeWidget.find('.timepicker-second').text()).to.equal '00'
+    @input.val '01/05/1905 23:52'
+    @input.change()
+    @dateShouldEqual 1905, 4, 1, 23, 52
+    expect(@timeWidget.find('.timepicker-hour').text()).to.equal '23'
+    expect(@timeWidget.find('.timepicker-minute').text()).to.equal '52'
+    expect(@timeWidget.find('.timepicker-second').text()).to.equal '00'
+
+  it 'formats correctly', ->
+    @picker.setValue Date.UTC(1905, 4, 1, 10)
+    expect(@input.val()).to.equal '01/05/1905 10:00'
+    @picker.setValue Date.UTC(1905, 4, 1, 0, 1)
+    expect(@input.val()).to.equal '01/05/1905 00:01'
+    @picker.setValue Date.UTC(1905, 4, 1, 12, 1)
+    expect(@input.val()).to.equal '01/05/1905 12:01'
+    @picker.setValue Date.UTC(1905, 4, 1, 13, 1)
+    expect(@input.val()).to.equal '01/05/1905 13:01'
 
 describe 'datetimepicker api', ->
 
