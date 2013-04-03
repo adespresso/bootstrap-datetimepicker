@@ -72,14 +72,12 @@
       if (this.component) {
         icon = this.component.find('i');
       }
-      if (this.pickTime) {
-        if (icon && icon.length) this.timeIcon = icon.data('time-icon');
-        if (!this.timeIcon) this.timeIcon = 'icon-time';
+      if (this.pickTime && icon && icon.length) {
+        this.timeIcon = icon.data('time-icon') || 'icon-time';
         icon.addClass(this.timeIcon);
       }
-      if (this.pickDate) {
-        if (icon && icon.length) this.dateIcon = icon.data('date-icon');
-        if (!this.dateIcon) this.dateIcon = 'icon-calendar';
+      if (this.pickDate && icon && icon.length) {
+        this.dateIcon = icon.data('date-icon') || 'icon-calendar';
         icon.removeClass(this.timeIcon);
         icon.addClass(this.dateIcon);
       }
