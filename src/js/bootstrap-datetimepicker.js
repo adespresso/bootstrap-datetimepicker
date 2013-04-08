@@ -72,14 +72,19 @@
       if (this.component) {
         icon = this.component.find('i');
       }
-      if (this.pickTime && icon && icon.length) {
-        this.timeIcon = icon.data('time-icon') || 'icon-time';
-        icon.addClass(this.timeIcon);
+      var iconExists = icon && icon.length;
+      if (this.pickTime) {
+        this.timeIcon = iconExists ? icon.data('time-icon') : null;
+        this.timeIcon = this.timeIcon || 'icon-time';
+        if (iconExists) icon.addClass(this.timeIcon);
       }
-      if (this.pickDate && icon && icon.length) {
-        this.dateIcon = icon.data('date-icon') || 'icon-calendar';
-        icon.removeClass(this.timeIcon);
-        icon.addClass(this.dateIcon);
+      if (this.pickDate) {
+        this.dateIcon = iconExists ? icon.data('date-icon') : null;
+        this.dateIcon = this.dateIcon || 'icon-calendar';
+        if (iconExists) {
+          icon.removeClass(this.timeIcon);
+          icon.addClass(this.dateIcon);
+        }
       }
       this.widget = $(getTemplate(this.timeIcon, options.pickDate, options.pickTime, options.pick12HourFormat, options.pickSeconds, options.collapse)).appendTo('body');
       this.minViewMode = options.minViewMode||this.$element.data('date-minviewmode')||0;
