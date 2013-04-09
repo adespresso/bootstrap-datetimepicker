@@ -822,7 +822,7 @@
       this._detachDatePickerGlobalEvents();
       this.widget.remove();
       this.$element.removeData('datetimepicker');
-      this.component.removeData('datetimepicker');
+      if (this.component) this.component.removeData('datetimepicker');
     },
 
     formatDate: function(d) {
