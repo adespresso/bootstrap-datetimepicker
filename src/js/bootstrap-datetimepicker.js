@@ -1,7 +1,7 @@
 /**
  * @license
  * =========================================================
- * bootstrap-datetimepicker.js 
+ * bootstrap-datetimepicker.js
  * http://www.eyecon.ro/bootstrap-datepicker
  * =========================================================
  * Copyright 2012 Stefan Petre
@@ -32,7 +32,7 @@
     this.id = dpgId++;
     this.init(element, options);
   };
-  
+
   var dateToDate = function(dt) {
     if (typeof dt === 'string') {
       return new Date(dt);
@@ -215,7 +215,7 @@
       if (!date) this.setValue(null);
       else this.setValue(date.valueOf());
     },
-    
+
     setStartDate: function(date) {
       if (date instanceof Date) {
         this.startDate = date;
@@ -231,7 +231,7 @@
         this.update();
       }
     },
-    
+
     setEndDate: function(date) {
       if (date instanceof Date) {
         this.endDate = date;
@@ -353,14 +353,14 @@
       var startMonth = typeof this.startDate === 'object' ? this.startDate.getUTCMonth() : -1;
       var endYear  = typeof this.endDate === 'object' ? this.endDate.getUTCFullYear() : Infinity;
       var endMonth = typeof this.endDate === 'object' ? this.endDate.getUTCMonth() : 12;
-      
+
       this.widget.find('.datepicker-days').find('.disabled').removeClass('disabled');
       this.widget.find('.datepicker-months').find('.disabled').removeClass('disabled');
       this.widget.find('.datepicker-years').find('.disabled').removeClass('disabled');
-      
+
       this.widget.find('.datepicker-days th:eq(1)').text(
         dates[this.language].months[month] + ' ' + year);
-          
+
       var prevMonth = UTCDate(year, month-1, 28, 0, 0, 0, 0);
       var day = DPGlobal.getDaysInMonth(
         prevMonth.getUTCFullYear(), prevMonth.getUTCMonth());
@@ -372,7 +372,7 @@
       if ((year == endYear && month >= endMonth) || year > endYear) {
         this.widget.find('.datepicker-days th:eq(2)').addClass('disabled');
       }
-      
+
       var nextMonth = new Date(prevMonth.valueOf());
       nextMonth.setUTCDate(nextMonth.getUTCDate() + 42);
       nextMonth = nextMonth.valueOf();
@@ -419,7 +419,7 @@
         this.widget.find('.datepicker-months th:eq(0)').addClass('disabled');
       }
       if (currentYear + 1 > endYear) {
-        this.widget.find('.datepicker-months th:eq(2)').addClass('disabled'); 
+        this.widget.find('.datepicker-months th:eq(2)').addClass('disabled');
       }
       for (var i = 0; i < 12; i++) {
         if ((year == startYear && startMonth > i) || (year < startYear)) {
@@ -689,7 +689,7 @@
             if (value === 12) value = 0;
             else value = value % 12;
           }
-        } 
+        }
         this._date.setUTCHours(value);
         this.actions.showPicker.call(this);
       },
@@ -1041,22 +1041,22 @@
       $(window).off('resize.datetimepicker' + this.id);
       $(document).off('mousedown.datetimepicker' + this.id);
     },
-    
+
     _isInFixed: function() {
       if (this.$element) {
         var parents = this.$element.parents();
         var inFixed = false;
-        for (var i=0; i<parents.length; i++) { 
-            if ($(parents[i]).css('position') == 'fixed') { 
-                inFixed = true; 
-                break; 
-            }  
+        for (var i=0; i<parents.length; i++) {
+            if ($(parents[i]).css('position') == 'fixed') {
+                inFixed = true;
+                break;
+            }
         };
-        return inFixed;        
+        return inFixed;
       } else {
         return false;
       }
-    }    
+    }
   };
 
   $.fn.datetimepicker = function ( option, val ) {
@@ -1104,6 +1104,7 @@
     MM: {property: 'UTCMonth', getPattern: function() {return '(0?[1-9]|1[0-2])\\b';}},
     yy: {property: 'UTCYear', getPattern: function() {return '(\\d{2})\\b'}},
     yyyy: {property: 'UTCFullYear', getPattern: function() {return '(\\d{4})\\b';}},
+    H: {property: 'UTCHours', getPattern: function() {return '([1-9]|1[0-9]|2[0-3])\\b';}},
     HH: {property: 'UTCHours', getPattern: function() {return '(0?[0-9]|1[0-9]|2[0-3])\\b';}},
     mm: {property: 'UTCMinutes', getPattern: function() {return '(0?[0-9]|[1-5][0-9])\\b';}},
     ss: {property: 'UTCSeconds', getPattern: function() {return '(0?[0-9]|[1-5][0-9])\\b';}},
@@ -1197,7 +1198,7 @@
     getDaysInMonth: function (year, month) {
       return [31, (DPGlobal.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month]
     },
-    headTemplate: 
+    headTemplate:
       '<thead>' +
         '<tr>' +
           '<th class="prev">&lsaquo;</th>' +
