@@ -1102,6 +1102,7 @@
     dd: {property: 'UTCDate', getPattern: function() { return '(0?[1-9]|[1-2][0-9]|3[0-1])\\b';}},
     M: {property: 'UTCMonth', getPattern: function() {return '([1-9]|1[0-2])\\b';}},
     MM: {property: 'UTCMonth', getPattern: function() {return '(0?[1-9]|1[0-2])\\b';}},
+    y: {property: 'UTCFullYear', getPattern: function() {return '(\\d{4})\\b';}},
     yy: {property: 'UTCYear', getPattern: function() {return '(\\d{2})\\b'}},
     yyyy: {property: 'UTCFullYear', getPattern: function() {return '(\\d{4})\\b';}},
     H: {property: 'UTCHours', getPattern: function() {return '([1-9]|1[0-9]|2[0-3])\\b';}},
