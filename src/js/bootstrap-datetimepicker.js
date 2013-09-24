@@ -68,6 +68,7 @@
         else this.format = this.$element.find('input').data('format');
         if (!this.format) this.format = 'MM/dd/yyyy';
       }
+      this._localizeFormat();
       this._compileFormat();
       if (this.component) {
         icon = this.component.find('i');
@@ -902,6 +903,13 @@
         }
       }
       return UTCDate(year, month, date, hours, minutes, seconds, milliseconds);
+    },
+
+    _localizeFormat: function() {
+        var localizedComponents = $.fn.datetimepicker.localizedDateFormatComponents || {};
+        for (k in localizedComponents) {
+            dateFormatComponents[k] = localizedComponents[k];
+        }
     },
 
     _compileFormat: function () {
