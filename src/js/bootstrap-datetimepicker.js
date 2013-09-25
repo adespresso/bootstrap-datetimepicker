@@ -523,9 +523,9 @@
       var table = timeComponents.closest('table');
       var is12HourFormat = this.options.pick12HourFormat;
       var hour = this._date.getUTCHours();
-      var period = 'AM';
+      var period = dateFormatComponents['a'].values['AM'];
       if (is12HourFormat) {
-        if (hour >= 12) period = 'PM';
+        if (hour >= 12) period = dateFormatComponents['a'].values['PM'];
         if (hour === 0) hour = 12;
         else if (hour != 12) hour = hour % 12;
         this.widget.find(
@@ -831,14 +831,15 @@
         var methodName, property, rv, len = match.length;
         if (match === 'SSS')
           len = 1;
-        property = dateFormatComponents[match].property
+        var component = dateFormatComponents[match];
+        property = component.property;
         if (property === 'Hours12') {
           rv = d.getUTCHours();
           if (rv === 0) rv = 12;
           else if (rv !== 12) rv = rv % 12;
         } else if (property === 'Period12') {
-          if (d.getUTCHours() >= 12) return 'PM';
-          else return 'AM';
+          if (d.getUTCHours() >= 12) return component.values['PM'];
+          else return component.values['AM'];
         } else {
           methodName = 'get' + property;
           rv = d[methodName]();
@@ -1120,7 +1121,7 @@
     SSS: {property: 'UTCMilliseconds', getPattern: function() {return '([0-9]{1,3})\\b';}},
     h: {property: 'Hours12', getPattern: function() {return '([1-9]|1[0-2])\\b';}},
     hh: {property: 'Hours12', getPattern: function() {return '(0?[1-9]|1[0-2])\\b';}},
-    a: {property: 'Period12', getPattern: function() {return '(AM|PM|am|pm|Am|aM|Pm|pM)\\b';}}
+    a: {property: 'Period12', getPattern: function() {return '(AM|PM|am|pm|Am|aM|Pm|pM)\\b';}, values: {AM:'AM',PM:'PM'}}
   };
 
   var keys = [];
