@@ -166,7 +166,9 @@
       this.widget.hide();
       this.viewMode = this.startViewMode;
       this.showMode();
-      this.set();
+      if ($.trim(this.$element.find('input').val()) !== '') {
+        this.set();
+      }
       this.$element.trigger({
         type: 'hide',
         date: this._date
