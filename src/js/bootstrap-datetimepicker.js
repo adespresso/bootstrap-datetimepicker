@@ -582,11 +582,12 @@
                   this._date.getUTCSeconds(),
                   this._date.getUTCMilliseconds()
                 );
+                this.set();
                 this.notifyChange();
               }
               this.showMode(-1);
               this.fillDate();
-              this.set();
+
               break;
             case 'td':
               if (target.is('.day')) {
