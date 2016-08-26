@@ -6,7 +6,7 @@ setupDateTimePicker = (opts) ->
   markup =
     """
     <div id="datetimepicker" class="input-append date">
-      <input type="text" value="#{value}" data-format="MM/dd/yyyy hh:mm:ss ms">
+      <input type="text" value="#{value}" data-format="MM/dd/yyyy HH:mm:ss SSS">
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
